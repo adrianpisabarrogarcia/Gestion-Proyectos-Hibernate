@@ -4,6 +4,8 @@
 
 package view;
 
+import model.PiezasEntity;
+
 import java.awt.*;
 import javax.swing.*;
 

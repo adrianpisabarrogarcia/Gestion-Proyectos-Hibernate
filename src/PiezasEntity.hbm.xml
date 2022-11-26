@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="model.PiezasEntity" table="piezas" schema="gestionproyectos">
+        <id name="id">
+            <column name="id" sql-type="int(255)"/>
+        </id>
+        <property name="nombre">
+            <column name="nombre" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="precio">
+            <column name="precio" sql-type="float" precision="-1"/>
+        </property>
+        <property name="descripcion">
+            <column name="descripcion" sql-type="text" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
