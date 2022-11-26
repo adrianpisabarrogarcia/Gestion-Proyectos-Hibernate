@@ -3,7 +3,7 @@ package model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "proveedores", schema = "gestionproyectos", catalog = "")
+@Table(name = "proveedores", schema = "gestionproyectos")
 public class ProveedoresEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -18,6 +18,8 @@ public class ProveedoresEntity {
     @Basic
     @Column(name = "direccion", nullable = false, length = 40)
     private String direccion;
+
+
 
     public int getId() {
         return id;
@@ -49,5 +51,23 @@ public class ProveedoresEntity {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    @Override
+    public String toString() {
+        return "ProveedoresEntity{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", direccion='" + direccion + '\'' +
+                '}';
+    }
+
+    public Object[] toArray() {
+        return new Object[]{Integer.toString(id), nombre, apellidos, direccion};
+    }
+
+    public static String[] getColumns() {
+        return new String[]{"ID", "Nombre", "Apellidos", "Dirección"};
     }
 }

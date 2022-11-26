@@ -4,7 +4,9 @@
 
 package view;
 
+import java.awt.event.*;
 import model.PiezasEntity;
+import view.proveedores.GestionProveedores;
 
 import java.awt.*;
 import javax.swing.*;
@@ -17,15 +19,28 @@ public class PantallaPrincipal extends JFrame {
         initComponents();
     }
 
+    private void bProoveedores(ActionEvent e) {
+        GestionProveedores gestionProveedores = new GestionProveedores();
+        gestionProveedores.setVisible(true);
+    }
+
+    private void mGestionProveedores(ActionEvent e) {
+        // TODO add your code here
+    }
+
+    private void mProveedores(ActionEvent e) {
+        GestionProveedores gestionProveedores = new GestionProveedores();
+        gestionProveedores.setVisible(true);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         menuBar1 = new JMenuBar();
-        menu1 = new JMenu();
-        menuItem2 = new JMenuItem();
-        menu2 = new JMenu();
-        menuItem3 = new JMenuItem();
+        mProveedores = new JMenuItem();
         menuItem4 = new JMenuItem();
-        menuItem5 = new JMenuItem();
+        menuItem3 = new JMenuItem();
+        menuItem2 = new JMenuItem();
+        menuItem1 = new JMenuItem();
         label1 = new JLabel();
 
         //======== this ========
@@ -35,33 +50,26 @@ public class PantallaPrincipal extends JFrame {
         //======== menuBar1 ========
         {
 
-            //======== menu1 ========
-            {
-                menu1.setText("Proveedores");
+            //---- mProveedores ----
+            mProveedores.setText("Proveedores");
+            mProveedores.addActionListener(e -> mProveedores(e));
+            menuBar1.add(mProveedores);
 
-                //---- menuItem2 ----
-                menuItem2.setText("Gesti\u00f3n de Proveedores");
-                menu1.add(menuItem2);
+            //---- menuItem4 ----
+            menuItem4.setText("text");
+            menuBar1.add(menuItem4);
 
-                //======== menu2 ========
-                {
-                    menu2.setText("Consulta de Proveedores");
+            //---- menuItem3 ----
+            menuItem3.setText("text");
+            menuBar1.add(menuItem3);
 
-                    //---- menuItem3 ----
-                    menuItem3.setText("Por c\u00f3digo");
-                    menu2.add(menuItem3);
+            //---- menuItem2 ----
+            menuItem2.setText("text");
+            menuBar1.add(menuItem2);
 
-                    //---- menuItem4 ----
-                    menuItem4.setText("Por nombre");
-                    menu2.add(menuItem4);
-
-                    //---- menuItem5 ----
-                    menuItem5.setText("Por direcci\u00f3n");
-                    menu2.add(menuItem5);
-                }
-                menu1.add(menu2);
-            }
-            menuBar1.add(menu1);
+            //---- menuItem1 ----
+            menuItem1.setText("text");
+            menuBar1.add(menuItem1);
         }
         setJMenuBar(menuBar1);
 
@@ -78,12 +86,11 @@ public class PantallaPrincipal extends JFrame {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JMenuBar menuBar1;
-    private JMenu menu1;
-    private JMenuItem menuItem2;
-    private JMenu menu2;
-    private JMenuItem menuItem3;
+    private JMenuItem mProveedores;
     private JMenuItem menuItem4;
-    private JMenuItem menuItem5;
+    private JMenuItem menuItem3;
+    private JMenuItem menuItem2;
+    private JMenuItem menuItem1;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
