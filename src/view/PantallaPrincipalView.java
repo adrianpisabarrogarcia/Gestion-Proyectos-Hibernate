@@ -5,8 +5,9 @@
 package view;
 
 import java.awt.event.*;
-import model.PiezasEntity;
-import view.proveedores.GestionProveedores;
+
+import view.ayuda.AyudaView;
+import view.proveedores.ProveedoresView;
 
 import java.awt.*;
 import javax.swing.*;
@@ -14,14 +15,15 @@ import javax.swing.*;
 /**
  * @author unknown
  */
-public class PantallaPrincipal extends JFrame {
-    public PantallaPrincipal() {
+public class PantallaPrincipalView extends JFrame {
+    public PantallaPrincipalView() {
         initComponents();
+        this.setTitle("Gestión de Proyectos");
     }
 
     private void bProoveedores(ActionEvent e) {
-        GestionProveedores gestionProveedores = new GestionProveedores();
-        gestionProveedores.setVisible(true);
+        ProveedoresView proveedoresView = new ProveedoresView();
+        proveedoresView.setVisible(true);
     }
 
     private void mGestionProveedores(ActionEvent e) {
@@ -29,8 +31,13 @@ public class PantallaPrincipal extends JFrame {
     }
 
     private void mProveedores(ActionEvent e) {
-        GestionProveedores gestionProveedores = new GestionProveedores();
-        gestionProveedores.setVisible(true);
+        ProveedoresView proveedoresView = new ProveedoresView();
+        proveedoresView.setVisible(true);
+    }
+
+    private void mAyuda(ActionEvent e) {
+        AyudaView ayudaView = new AyudaView();
+        ayudaView.setVisible(true);
     }
 
     private void initComponents() {
@@ -69,6 +76,7 @@ public class PantallaPrincipal extends JFrame {
 
             //---- mAyuda ----
             mAyuda.setText("Ayuda");
+            mAyuda.addActionListener(e -> mAyuda(e));
             menuBar1.add(mAyuda);
         }
         setJMenuBar(menuBar1);

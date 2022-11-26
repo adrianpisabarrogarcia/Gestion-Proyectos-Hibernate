@@ -1,6 +1,5 @@
 
-import controller.hibernate.InsertData;
-import view.PantallaPrincipal;
+import view.PantallaPrincipalView;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,8 +8,8 @@ public class Main {
         //InsertData.insertProveedores();
 
         //Iniciamos con la pantalla principal
-        PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
-        pantallaPrincipal.setVisible(true);
+        PantallaPrincipalView pantallaPrincipalView = new PantallaPrincipalView();
+        pantallaPrincipalView.setVisible(true);
 
     }
 }

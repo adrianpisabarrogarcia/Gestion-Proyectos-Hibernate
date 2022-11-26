@@ -17,9 +17,10 @@ import javax.swing.*;
 /**
  * @author unknown
  */
-public class GestionProveedores extends JFrame {
-    public GestionProveedores() {
+public class ProveedoresView extends JFrame {
+    public ProveedoresView() {
         initComponents();
+        this.setTitle("Gestión de Proveedores");
     }
 
     private void bFiltrar(ActionEvent e) {
