@@ -37,10 +37,10 @@ public class PantallaPrincipal extends JFrame {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         menuBar1 = new JMenuBar();
         mProveedores = new JMenuItem();
-        menuItem4 = new JMenuItem();
-        menuItem3 = new JMenuItem();
-        menuItem2 = new JMenuItem();
-        menuItem1 = new JMenuItem();
+        mPiezas = new JMenuItem();
+        mProyectos = new JMenuItem();
+        mGestionGlobal = new JMenuItem();
+        mAyuda = new JMenuItem();
         label1 = new JLabel();
 
         //======== this ========
@@ -55,21 +55,21 @@ public class PantallaPrincipal extends JFrame {
             mProveedores.addActionListener(e -> mProveedores(e));
             menuBar1.add(mProveedores);
 
-            //---- menuItem4 ----
-            menuItem4.setText("text");
-            menuBar1.add(menuItem4);
+            //---- mPiezas ----
+            mPiezas.setText("Piezas");
+            menuBar1.add(mPiezas);
 
-            //---- menuItem3 ----
-            menuItem3.setText("text");
-            menuBar1.add(menuItem3);
+            //---- mProyectos ----
+            mProyectos.setText("Proyectos");
+            menuBar1.add(mProyectos);
 
-            //---- menuItem2 ----
-            menuItem2.setText("text");
-            menuBar1.add(menuItem2);
+            //---- mGestionGlobal ----
+            mGestionGlobal.setText("Gesti\u00f3n Global");
+            menuBar1.add(mGestionGlobal);
 
-            //---- menuItem1 ----
-            menuItem1.setText("text");
-            menuBar1.add(menuItem1);
+            //---- mAyuda ----
+            mAyuda.setText("Ayuda");
+            menuBar1.add(mAyuda);
         }
         setJMenuBar(menuBar1);
 
@@ -87,10 +87,10 @@ public class PantallaPrincipal extends JFrame {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JMenuBar menuBar1;
     private JMenuItem mProveedores;
-    private JMenuItem menuItem4;
-    private JMenuItem menuItem3;
-    private JMenuItem menuItem2;
-    private JMenuItem menuItem1;
+    private JMenuItem mPiezas;
+    private JMenuItem mProyectos;
+    private JMenuItem mGestionGlobal;
+    private JMenuItem mAyuda;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

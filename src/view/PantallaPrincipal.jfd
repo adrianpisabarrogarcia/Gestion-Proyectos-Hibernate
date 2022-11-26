@@ -22,20 +22,20 @@ new FormModel {
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "mProveedores", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JMenuItem" ) {
-					name: "menuItem4"
-					"text": "text"
+					name: "mPiezas"
+					"text": "Piezas"
 				} )
 				add( new FormComponent( "javax.swing.JMenuItem" ) {
-					name: "menuItem3"
-					"text": "text"
+					name: "mProyectos"
+					"text": "Proyectos"
 				} )
 				add( new FormComponent( "javax.swing.JMenuItem" ) {
-					name: "menuItem2"
-					"text": "text"
+					name: "mGestionGlobal"
+					"text": "Gestión Global"
 				} )
 				add( new FormComponent( "javax.swing.JMenuItem" ) {
-					name: "menuItem1"
-					"text": "text"
+					name: "mAyuda"
+					"text": "Ayuda"
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
