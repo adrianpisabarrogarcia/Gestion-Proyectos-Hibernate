@@ -1,11 +1,15 @@
 
+import controller.hibernate.InsertData;
 import view.PantallaPrincipalView;
 
 public class Main {
     public static void main(String[] args) {
 
         //Cargamos la primera vez los primeros datos de la base de datos
-        //InsertData.insertProveedores();
+        /*InsertData.insertProveedores();
+        InsertData.insertPiezas();
+        InsertData.insertProyectos();
+        InsertData.insertGestion();*/
 
         //Iniciamos con la pantalla principal
         PantallaPrincipalView pantallaPrincipalView = new PantallaPrincipalView();
