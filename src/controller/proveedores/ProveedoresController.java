@@ -3,6 +3,7 @@ package controller.proveedores;
 import controller.hibernate.Utils;
 import model.ProveedoresEntity;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,8 +88,12 @@ public class ProveedoresController {
     public static String deleteProveedor(int intId) {
         ProveedoresEntity proveedor = (ProveedoresEntity) Utils.get(ProveedoresEntity.class, intId);
         if(proveedor != null){
-            Utils.delete(proveedor);
-            return "ok";
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro de que quieres eliminar el proveedor " + proveedor.getNombre() + "?", "Eliminar proveedor", JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                Utils.delete(proveedor);
+                return "ok";
+            }
+            return "no";
         } else {
             return "No existe el proveedor con id " + intId;
         }
