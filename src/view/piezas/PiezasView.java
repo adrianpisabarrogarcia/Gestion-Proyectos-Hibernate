@@ -111,7 +111,7 @@ public class PiezasView extends JFrame {
     }
     private void bGInsertar(ActionEvent e) {
         String nombre = tfGNombre.getText();
-        String precio = tfGPrecio.getText();
+        String precio = tfGPrecio.getText().replace(",", ".");
         String descripcion = tfGDescripcion.getText();
 
         String acciones = PiezasController.insertPieza(nombre, precio, descripcion);
@@ -172,6 +172,28 @@ public class PiezasView extends JFrame {
         cargarTablaListadoPiezas(piezas);
     }
 
+    private void TabListaProveedoresPropertyChange(PropertyChangeEvent e) {
+        cargarTodasLasPiezas();
+    }
+
+    private void panel1ComponentShown(ComponentEvent e) {
+        // TODO add your code here
+    }
+
+    private void tabListadoProveedoresComponentShown(ComponentEvent e) {
+        // TODO add your code here
+    }
+
+
+
+    private void TabListadoPiezasComponentShown(ComponentEvent e) {
+        cargarTodasLasPiezas();
+    }
+
+    private void button1(ActionEvent e) {
+        // TODO add your code here
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         tabbedPane1 = new JTabbedPane();
@@ -209,12 +231,7 @@ public class PiezasView extends JFrame {
 
             //======== panel1 ========
             {
-                panel1.addPropertyChangeListener(e -> TabListaPiezasPropertyChange(e));
-                panel1.addComponentListener(new ComponentAdapter() {
-                    @Override
-                    public void componentShown(ComponentEvent e) {
-                    }
-                });
+                panel1.addPropertyChangeListener(e -> TabListaProveedoresPropertyChange(e));
                 panel1.setLayout(null);
 
                 //======== scrollPane1 ========
@@ -257,9 +274,7 @@ public class PiezasView extends JFrame {
 
                 //---- bVaciarFiltro ----
                 bVaciarFiltro.setText("Vaciar filtro");
-                bVaciarFiltro.addActionListener(e -> {
-			bVaciarFiltro(e);
-		});
+                bVaciarFiltro.addActionListener(e -> bVaciarFiltro(e));
                 panel1.add(bVaciarFiltro);
                 bVaciarFiltro.setBounds(430, 385, 125, bVaciarFiltro.getPreferredSize().height);
 
