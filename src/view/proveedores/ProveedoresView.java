@@ -137,6 +137,7 @@ public class ProveedoresView extends JFrame {
                 if (acciones.equals("ok")) {
                     JOptionPane.showMessageDialog(null, "Proveedor eliminado correctamente");
                     vaciarbG();
+                } else if (acciones.equals("no")) {
                 } else {
                     JOptionPane.showMessageDialog(null, acciones);
                 }
