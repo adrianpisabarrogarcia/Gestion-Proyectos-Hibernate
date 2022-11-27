@@ -7,6 +7,7 @@ package view;
 import java.awt.event.*;
 
 import view.ayuda.AyudaView;
+import view.piezas.PiezasView;
 import view.proveedores.ProveedoresView;
 
 import java.awt.*;
@@ -40,6 +41,11 @@ public class PantallaPrincipalView extends JFrame {
         ayudaView.setVisible(true);
     }
 
+    private void mPiezas(ActionEvent e) {
+        PiezasView piezasView = new PiezasView();
+        piezasView.setVisible(true);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         menuBar1 = new JMenuBar();
@@ -64,6 +70,7 @@ public class PantallaPrincipalView extends JFrame {
 
             //---- mPiezas ----
             mPiezas.setText("Piezas");
+            mPiezas.addActionListener(e -> mPiezas(e));
             menuBar1.add(mPiezas);
 
             //---- mProyectos ----

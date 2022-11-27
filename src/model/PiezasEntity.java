@@ -60,4 +60,12 @@ public class PiezasEntity {
                 ", descripcion='" + descripcion + '\'' +
                 '}';
     }
+
+    public Object[] toArray() {
+        return new Object[]{Integer.toString(id), nombre, Double.toString(precio), descripcion};
+    }
+
+    public static String[] getColumns() {
+        return new String[]{"ID", "Nombre", "Precio", "Descripcion"};
+    }
 }

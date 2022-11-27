@@ -12,7 +12,7 @@ public class PiezasController {
     public static ArrayList<PiezasEntity> getPiezas() {
         List<Object> piezas = Utils.getAll(PiezasEntity.class);
         ArrayList<PiezasEntity> piezasEntity = new ArrayList<>();
-        for (Object pieza : piezasEntity) {
+        for (Object pieza : piezas) {
             piezasEntity.add((PiezasEntity) pieza);
         }
         return piezasEntity;
