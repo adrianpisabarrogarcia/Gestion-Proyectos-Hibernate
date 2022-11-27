@@ -46,7 +46,7 @@ public class PiezasController {
     }
 
     public static String updatePieza(String id, String nombre, String precio, String descripcion) {
-        String accion = validarCampos(nombre, precio);
+        String accion = validarCampos(id, nombre, precio);
 
         if (accion.equals("")) {
             try {
@@ -70,7 +70,7 @@ public class PiezasController {
     }
 
     public static String insertPieza(String nombre, String precio, String descripcion) {
-        String accion = validarCampos(nombre, precio);
+        String accion = validarCampos("vacioID", nombre, precio);
         if(accion.equals("")){
             PiezasEntity pieza = new PiezasEntity();
             pieza.setNombre(nombre);
@@ -96,13 +96,16 @@ public class PiezasController {
         }
     }
 
-    private static String validarCampos(String nombre, String precio){
+    private static String validarCampos(String id, String nombre, String precio){
         String accion = "";
         if(nombre.equals("")) {
             accion += "El nombre no puede estar vacío\n";
         }
         if(nombre.length() > 20) {
             accion += "El nombre no puede tener más de 20 caracteres\n";
+        }
+        if(id.equals("")){
+            accion += "El id no puede estar vacío para modificar la pieza\n";
         }
         Double precioDouble;
         try {
