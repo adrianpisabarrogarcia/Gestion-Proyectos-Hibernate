@@ -8,7 +8,6 @@ import org.hibernate.cfg.Configuration;
 import java.util.List;
 
 public class Utils {
-
     public static Configuration getConfig() {
         Configuration configuration = new Configuration();
         configuration.configure();
@@ -68,6 +67,7 @@ public class Utils {
 
         return object;
     }
+
     public static List<Object> getAll(Class clase) {
         SessionFactory sessionFactory = getConfig().buildSessionFactory();
         Session session = sessionFactory.openSession();

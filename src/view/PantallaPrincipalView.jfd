@@ -29,10 +29,18 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JMenuItem" ) {
 					name: "mProyectos"
 					"text": "Proyectos"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "mProyectos", true ) )
 				} )
-				add( new FormComponent( "javax.swing.JMenuItem" ) {
-					name: "mGestionGlobal"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
 					"text": "Gestión Global"
+					"minimumSize": new java.awt.Dimension( 101, 21 )
+					"preferredSize": new java.awt.Dimension( 130, 21 )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "mPiezasProveedoresProyectos"
+						"text": "Piezas, Proveedores y Proyectos"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "mPiezasProveedoresProyectos", true ) )
+					} )
 				} )
 				add( new FormComponent( "javax.swing.JMenuItem" ) {
 					name: "mAyuda"

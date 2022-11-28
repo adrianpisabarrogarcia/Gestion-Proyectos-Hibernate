@@ -11,11 +11,11 @@ new FormModel {
 				name: "tabbedPane1"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "panel1"
-					addEvent( new FormEvent( "java.beans.PropertyChangeListener", "propertyChange", "TabListaProveedoresPropertyChange", true ) )
+					addEvent( new FormEvent( "java.beans.PropertyChangeListener", "propertyChange", "TabListaProyectosPropertyChange", true ) )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane1"
 						add( new FormComponent( "javax.swing.JTable" ) {
-							name: "tListadoProveedores"
+							name: "tListadoPiezas"
 							"autoCreateRowSorter": true
 							"selectionMode": 0
 							"enabled": false
@@ -50,15 +50,6 @@ new FormModel {
 						"x": 130
 						"y": 390
 					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label4"
-						"text": "Dirección"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 70
-						"height": 16
-						"x": 130
-						"y": 425
-					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "tfId"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -74,20 +65,13 @@ new FormModel {
 						"x": 195
 						"y": 385
 					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "tfDireccion"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 170
-						"x": 195
-						"y": 420
-					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "bFiltrar"
 						"text": "Filtrar"
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bFiltrar", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 430
-						"y": 390
+						"y": 380
 						"width": 125
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
@@ -96,11 +80,28 @@ new FormModel {
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bVaciarFiltro", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 430
-						"y": 420
+						"y": 415
 						"width": 125
 					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "Ciudad"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 75
+						"height": 16
+						"x": 130
+						"y": 425
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfCiudad"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 170
+						"height": 27
+						"x": 195
+						"y": 420
+					} )
 				}, new FormLayoutConstraints( null ) {
-					"title": "Listado de Proveedores"
+					"title": "Listado de Proyectos"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 					name: "panel2"
@@ -113,7 +114,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label5"
-						"text": "Código de proveedor"
+						"text": "Código de proyecto"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"x": 125
 						"y": 80
@@ -125,49 +126,32 @@ new FormModel {
 						"width": 127
 						"height": 16
 						"x": 125
-						"y": 125
+						"y": 145
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "tfGNombre"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 275
 						"height": 27
-						"x": 230
-						"y": 120
+						"x": 235
+						"y": 140
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "tfGApellidos"
+						name: "tfGCiudad"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 275
 						"height": 27
-						"x": 230
-						"y": 165
-					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "tfGDireccion"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 275
-						"height": 27
-						"x": 230
-						"y": 210
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label7"
-						"text": "Apellidos"
-					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-						"width": 127
-						"height": 16
-						"x": 125
-						"y": 170
+						"x": 235
+						"y": 205
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label8"
-						"text": "Dirección"
+						"text": "Ciudad"
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 						"width": 127
 						"height": 16
 						"x": 125
-						"y": 215
+						"y": 210
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "bGBuscar"
@@ -216,7 +200,7 @@ new FormModel {
 						"y": 290
 					} )
 				}, new FormLayoutConstraints( null ) {
-					"title": "Gestión de Proveedores"
+					"title": "Gestión de Proyectos"
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 5
@@ -226,7 +210,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 890, 555 )
+			"size": new java.awt.Dimension( 890, 530 )
 		} )
 	}
 }

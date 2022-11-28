@@ -66,6 +66,6 @@ public class PiezasEntity {
     }
 
     public static String[] getColumns() {
-        return new String[]{"ID", "Nombre", "Precio", "Descripcion"};
+        return new String[]{"ID", "Nombre", "Precio", "Descripción"};
     }
 }

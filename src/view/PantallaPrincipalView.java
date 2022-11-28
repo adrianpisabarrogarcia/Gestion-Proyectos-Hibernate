@@ -9,6 +9,7 @@ import java.awt.event.*;
 import view.ayuda.AyudaView;
 import view.piezas.PiezasView;
 import view.proveedores.ProveedoresView;
+import view.proyectos.ProyectosView;
 
 import java.awt.*;
 import javax.swing.*;
@@ -46,13 +47,23 @@ public class PantallaPrincipalView extends JFrame {
         piezasView.setVisible(true);
     }
 
+    private void mProyectos(ActionEvent e) {
+        ProyectosView proyectosView = new ProyectosView();
+        proyectosView.setVisible(true);
+    }
+
+    private void mPiezasProveedoresProyectos(ActionEvent e) {
+        // TODO add your code here
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         menuBar1 = new JMenuBar();
         mProveedores = new JMenuItem();
         mPiezas = new JMenuItem();
         mProyectos = new JMenuItem();
-        mGestionGlobal = new JMenuItem();
+        menu1 = new JMenu();
+        mPiezasProveedoresProyectos = new JMenuItem();
         mAyuda = new JMenuItem();
         label1 = new JLabel();
 
@@ -75,11 +86,21 @@ public class PantallaPrincipalView extends JFrame {
 
             //---- mProyectos ----
             mProyectos.setText("Proyectos");
+            mProyectos.addActionListener(e -> mProyectos(e));
             menuBar1.add(mProyectos);
 
-            //---- mGestionGlobal ----
-            mGestionGlobal.setText("Gesti\u00f3n Global");
-            menuBar1.add(mGestionGlobal);
+            //======== menu1 ========
+            {
+                menu1.setText("Gesti\u00f3n Global");
+                menu1.setMinimumSize(new Dimension(101, 21));
+                menu1.setPreferredSize(new Dimension(130, 21));
+
+                //---- mPiezasProveedoresProyectos ----
+                mPiezasProveedoresProyectos.setText("Piezas, Proveedores y Proyectos");
+                mPiezasProveedoresProyectos.addActionListener(e -> mPiezasProveedoresProyectos(e));
+                menu1.add(mPiezasProveedoresProyectos);
+            }
+            menuBar1.add(menu1);
 
             //---- mAyuda ----
             mAyuda.setText("Ayuda");
@@ -104,7 +125,8 @@ public class PantallaPrincipalView extends JFrame {
     private JMenuItem mProveedores;
     private JMenuItem mPiezas;
     private JMenuItem mProyectos;
-    private JMenuItem mGestionGlobal;
+    private JMenu menu1;
+    private JMenuItem mPiezasProveedoresProyectos;
     private JMenuItem mAyuda;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on

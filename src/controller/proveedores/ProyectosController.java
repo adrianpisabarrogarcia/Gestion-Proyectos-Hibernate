@@ -13,7 +13,7 @@ public class ProyectosController {
     public static ArrayList<ProyectosEntity> getProyectos() {
         List<Object> proyectos = Utils.getAll(ProyectosEntity.class);
         ArrayList<ProyectosEntity> proyectosEntity = new ArrayList<>();
-        for (Object proyecto : proyectosEntity) {
+        for (Object proyecto : proyectos) {
             proyectosEntity.add((ProyectosEntity) proyecto);
         }
         return proyectosEntity;
@@ -32,8 +32,6 @@ public class ProyectosController {
             where += "AND UPPER(ciudad) LIKE '%" + ciudad.toUpperCase() + "%' ";
         }
 
-
-        System.out.println(where);
 
         List<Object> objects = Utils.getAllWithWhere(ProyectosEntity.class, where);
         ArrayList<ProyectosEntity> proyectosEntities = new ArrayList<>();

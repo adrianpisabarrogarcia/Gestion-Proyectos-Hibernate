@@ -2,17 +2,16 @@
  * Created by JFormDesigner on Sat Nov 26 12:33:02 CET 2022
  */
 
-package view.piezas;
+package view.proyectos;
 
 import controller.proveedores.PiezasController;
-import controller.proveedores.ProveedoresController;
+import controller.proveedores.ProyectosController;
 import model.PiezasEntity;
-import model.ProveedoresEntity;
+import model.ProyectosEntity;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
@@ -20,12 +19,12 @@ import java.util.ArrayList;
 /**
  * @author unknown
  */
-public class PiezasView extends JFrame {
-    public PiezasView() {
+public class ProyectosView extends JFrame {
+    public ProyectosView() {
         initComponents();
-        this.setTitle("Gestión de Piezas");
+        this.setTitle("Gestión de Proyectos");
         // Nada más cargar la ventana, se cargan los datos de la tabla
-        cargarTodasLasPiezas();
+        cargarTodosLosProyectos();
     }
 
     //Métodos personalizados
@@ -33,54 +32,52 @@ public class PiezasView extends JFrame {
     private void bFiltrar(ActionEvent e) {
         String nombre = tfNombre.getText();
         String id = tfId.getText();
-
-        try {
+        String ciudad = tfCiudad.getText();
+        try{
             int idInt = Integer.parseInt(id);
-            ArrayList<PiezasEntity> piezas = PiezasController.filtrarPor(nombre, id);
-            cargarTablaListadoPiezas(piezas);
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "El id debe ser un número entero");
-        }
-        catch (Exception ex){
-            System.out.println("Error al filtrar");
+            ArrayList<ProyectosEntity> proyectos = ProyectosController.filtrarPor(nombre, id, ciudad);
+            cargarTablaListadoProyectos(proyectos);
+        }catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "El id debe ser un número");
+        }catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
     private void bVaciarFiltro(ActionEvent e) {
         textFieldsBlanc();
-        cargarTodasLasPiezas();
+        cargarTodosLosProyectos();
     }
 
     private void tabListaProveedoresComponentShown(ComponentEvent e) {
-        cargarTodasLasPiezas();
+        cargarTodosLosProyectos();
         textFieldsBlanc();
     }
 
     private void textFieldsBlanc() {
-        tfNombre.setText("");
         tfId.setText("");
-        tfGDescripcion.setText("");
-        tfGPrecio.setText("");
+        tfNombre.setText("");
+        tfCiudad.setText("");
+        tfGId.setText("");
+        tfGNombre.setText("");
+        tfGCiudad.setText("");
     }
 
     private void TabListaPiezasPropertyChange(PropertyChangeEvent e) {
-        cargarTodasLasPiezas();
+        cargarTodosLosProyectos();
     }
-
-
 
     private void bGBuscar(ActionEvent e) {
         String id = tfGId.getText();
         if(!id.equals("")) {
             try {
                 int intId = Integer.parseInt(id);
-                PiezasEntity pieza = PiezasController.getPieza(intId);
-                if(pieza != null) {
-                    tfGNombre.setText(pieza.getNombre());
-                    tfGPrecio.setText(Double.toString(pieza.getPrecio()));
-                    tfGDescripcion.setText(pieza.getDescripcion());
+                ProyectosEntity proyecto = ProyectosController.getProyecto(intId);
+                if(proyecto != null) {
+                    tfGNombre.setText(proyecto.getNombre());
+                    tfGCiudad.setText(proyecto.getCiudad());
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se ha encontrado la pieza");
+                    JOptionPane.showMessageDialog(null, "No se ha encontrado el proyecyo");
                 }
             }catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Código no válido");
@@ -99,19 +96,17 @@ public class PiezasView extends JFrame {
     private void vaciarbG(){
         tfGId.setText("");
         tfGNombre.setText("");
-        tfGPrecio.setText("");
-        tfGDescripcion.setText("");
+        tfGCiudad.setText("");
     }
 
     private void bGModificar(ActionEvent e) {
         String id = tfGId.getText();
         String nombre = tfGNombre.getText();
-        String precio = tfGPrecio.getText();
-        String descripcion = tfGDescripcion.getText();
+        String ciudad = tfGCiudad.getText();
 
-        String acciones = PiezasController.updatePieza(id, nombre, precio, descripcion);
+        String acciones = ProyectosController.updatePryecto(id, nombre, ciudad);
         if (acciones.equals("ok")) {
-            JOptionPane.showMessageDialog(null, "Pieza modificada correctamente");
+            JOptionPane.showMessageDialog(null, "Proyecto modificado correctamente");
             vaciarbG();
         } else {
             JOptionPane.showMessageDialog(null, acciones);
@@ -119,12 +114,11 @@ public class PiezasView extends JFrame {
     }
     private void bGInsertar(ActionEvent e) {
         String nombre = tfGNombre.getText();
-        String precio = tfGPrecio.getText().replace(",", ".");
-        String descripcion = tfGDescripcion.getText();
+        String ciudad = tfGCiudad.getText();
 
-        String acciones = PiezasController.insertPieza(nombre, precio, descripcion);
+        String acciones = ProyectosController.insertProyecto(nombre, ciudad);
         if (acciones.equals("ok")) {
-            JOptionPane.showMessageDialog(null, "Pieza insertada correctamente");
+            JOptionPane.showMessageDialog(null, "Proyecto insertado correctamente");
             vaciarbG();
         } else {
             JOptionPane.showMessageDialog(null, acciones);
@@ -136,9 +130,9 @@ public class PiezasView extends JFrame {
         if(!id.equals("")) {
             try {
                 int intId = Integer.parseInt(id);
-                String acciones = PiezasController.deletePieza(intId);
+                String acciones = ProyectosController.deleteProyecto(intId);
                 if (acciones.equals("ok")) {
-                    JOptionPane.showMessageDialog(null, "Piza eliminada correctamente");
+                    JOptionPane.showMessageDialog(null, "Proyecto eliminado correctamente");
                     vaciarbG();
                 } else if (acciones.equals("no")) {
                 } else {
@@ -154,52 +148,34 @@ public class PiezasView extends JFrame {
     }
 
     /**
-     * Carga todas las piezas pasadas por parámetro a la tabla.
-     * @param piezas
+     * Carga todos los proyectos pasadas por parámetro a la tabla.
+     * @param proyectos
      */
-    private void cargarTablaListadoPiezas(ArrayList<PiezasEntity> piezas) {
-        Object[][] data = new Object[piezas.size()][PiezasEntity.getColumns().length];
-        for (int i = 0; i < piezas.size(); i++) {
-            PiezasEntity pieza = piezas.get(i);
-            data[i] = pieza.toArray();
+    private void cargarTablaListadoProyectos(ArrayList<ProyectosEntity> proyectos) {
+        Object[][] data = new Object[proyectos.size()][ProyectosEntity.getColumns().length];
+        for (int i = 0; i < proyectos.size(); i++) {
+            ProyectosEntity proyecto = proyectos.get(i);
+            data[i] = proyecto.toArray();
         }
 
         tListadoPiezas.setModel(new javax.swing.table.DefaultTableModel(
                 data,
-                PiezasEntity.getColumns()
+                ProyectosEntity.getColumns()
         ));
     }
 
     /**
-     * Carga todos las piezas de la base de datos a la tabla,
+     * Carga todos los proyectos de la base de datos a la tabla,
      * nada más incializar el componente de piezas.
      */
-    private void cargarTodasLasPiezas(){
-        // Cargamos todos los proveedores
-        ArrayList<PiezasEntity> piezas = PiezasController.getPiezas();
-        cargarTablaListadoPiezas(piezas);
+    private void cargarTodosLosProyectos(){
+        // Cargamos todos los proyectos
+        ArrayList<ProyectosEntity> proyectos = ProyectosController.getProyectos();
+        cargarTablaListadoProyectos(proyectos);
     }
 
-    private void TabListaProveedoresPropertyChange(PropertyChangeEvent e) {
-        cargarTodasLasPiezas();
-    }
-
-    private void panel1ComponentShown(ComponentEvent e) {
-        // TODO add your code here
-    }
-
-    private void tabListadoProveedoresComponentShown(ComponentEvent e) {
-        // TODO add your code here
-    }
-
-
-
-    private void TabListadoPiezasComponentShown(ComponentEvent e) {
-        cargarTodasLasPiezas();
-    }
-
-    private void button1(ActionEvent e) {
-        // TODO add your code here
+    private void TabListaProyectosPropertyChange(PropertyChangeEvent e) {
+        cargarTodosLosProyectos();
     }
 
     private void initComponents() {
@@ -215,14 +191,14 @@ public class PiezasView extends JFrame {
         tfNombre = new JTextField();
         bFiltrar = new JButton();
         bVaciarFiltro = new JButton();
+        label4 = new JLabel();
+        tfCiudad = new JTextField();
         panel2 = new JPanel();
         tfGId = new JTextField();
         label5 = new JLabel();
         label6 = new JLabel();
         tfGNombre = new JTextField();
-        tfGPrecio = new JTextField();
-        tfGDescripcion = new JTextField();
-        label7 = new JLabel();
+        tfGCiudad = new JTextField();
         label8 = new JLabel();
         bGBuscar = new JButton();
         bGInsertar = new JButton();
@@ -239,7 +215,7 @@ public class PiezasView extends JFrame {
 
             //======== panel1 ========
             {
-                panel1.addPropertyChangeListener(e -> TabListaProveedoresPropertyChange(e));
+                panel1.addPropertyChangeListener(e -> TabListaProyectosPropertyChange(e));
                 panel1.setLayout(null);
 
                 //======== scrollPane1 ========
@@ -278,13 +254,20 @@ public class PiezasView extends JFrame {
                 bFiltrar.setText("Filtrar");
                 bFiltrar.addActionListener(e -> bFiltrar(e));
                 panel1.add(bFiltrar);
-                bFiltrar.setBounds(430, 355, 125, bFiltrar.getPreferredSize().height);
+                bFiltrar.setBounds(430, 380, 125, bFiltrar.getPreferredSize().height);
 
                 //---- bVaciarFiltro ----
                 bVaciarFiltro.setText("Vaciar filtro");
                 bVaciarFiltro.addActionListener(e -> bVaciarFiltro(e));
                 panel1.add(bVaciarFiltro);
-                bVaciarFiltro.setBounds(430, 385, 125, bVaciarFiltro.getPreferredSize().height);
+                bVaciarFiltro.setBounds(430, 415, 125, bVaciarFiltro.getPreferredSize().height);
+
+                //---- label4 ----
+                label4.setText("Ciudad");
+                panel1.add(label4);
+                label4.setBounds(130, 425, 75, 16);
+                panel1.add(tfCiudad);
+                tfCiudad.setBounds(195, 420, 170, 27);
 
                 {
                     // compute preferred size
@@ -301,7 +284,7 @@ public class PiezasView extends JFrame {
                     panel1.setPreferredSize(preferredSize);
                 }
             }
-            tabbedPane1.addTab("Listado de Piezas", panel1);
+            tabbedPane1.addTab("Listado de Proyectos", panel1);
 
             //======== panel2 ========
             {
@@ -310,30 +293,23 @@ public class PiezasView extends JFrame {
                 tfGId.setBounds(310, 75, 195, tfGId.getPreferredSize().height);
 
                 //---- label5 ----
-                label5.setText("C\u00f3digo de pieza");
+                label5.setText("C\u00f3digo de proyecto");
                 panel2.add(label5);
                 label5.setBounds(new Rectangle(new Point(125, 80), label5.getPreferredSize()));
 
                 //---- label6 ----
                 label6.setText("Nombre");
                 panel2.add(label6);
-                label6.setBounds(125, 125, 127, 16);
+                label6.setBounds(125, 145, 127, 16);
                 panel2.add(tfGNombre);
-                tfGNombre.setBounds(230, 120, 275, 27);
-                panel2.add(tfGPrecio);
-                tfGPrecio.setBounds(230, 165, 275, 27);
-                panel2.add(tfGDescripcion);
-                tfGDescripcion.setBounds(230, 210, 275, 27);
-
-                //---- label7 ----
-                label7.setText("Precio");
-                panel2.add(label7);
-                label7.setBounds(125, 170, 127, 16);
+                tfGNombre.setBounds(235, 140, 275, 27);
+                panel2.add(tfGCiudad);
+                tfGCiudad.setBounds(235, 205, 275, 27);
 
                 //---- label8 ----
-                label8.setText("Descripci\u00f3n");
+                label8.setText("Ciudad");
                 panel2.add(label8);
-                label8.setBounds(125, 215, 127, 16);
+                label8.setBounds(125, 210, 127, 16);
 
                 //---- bGBuscar ----
                 bGBuscar.setText("Buscar");
@@ -380,7 +356,7 @@ public class PiezasView extends JFrame {
                     panel2.setPreferredSize(preferredSize);
                 }
             }
-            tabbedPane1.addTab("Gesti\u00f3n de Piezas", panel2);
+            tabbedPane1.addTab("Gesti\u00f3n de Proyectos", panel2);
         }
         contentPane.add(tabbedPane1);
         tabbedPane1.setBounds(5, 10, 865, 500);
@@ -403,14 +379,14 @@ public class PiezasView extends JFrame {
     private JTextField tfNombre;
     private JButton bFiltrar;
     private JButton bVaciarFiltro;
+    private JLabel label4;
+    private JTextField tfCiudad;
     private JPanel panel2;
     private JTextField tfGId;
     private JLabel label5;
     private JLabel label6;
     private JTextField tfGNombre;
-    private JTextField tfGPrecio;
-    private JTextField tfGDescripcion;
-    private JLabel label7;
+    private JTextField tfGCiudad;
     private JLabel label8;
     private JButton bGBuscar;
     private JButton bGInsertar;

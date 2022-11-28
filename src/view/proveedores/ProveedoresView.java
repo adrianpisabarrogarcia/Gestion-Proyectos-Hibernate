@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 /**
- * @author unknown
+ * @author adrianpisabarrogarcia
  */
 public class ProveedoresView extends JFrame {
     public ProveedoresView() {
@@ -28,8 +28,16 @@ public class ProveedoresView extends JFrame {
         String id = tfId.getText();
         String direccion = tfDireccion.getText();
 
-        ArrayList<ProveedoresEntity> proveedores = ProveedoresController.filtrarPor(nombre, id, direccion);
-        cargarTablaListadoProveedores(proveedores);
+        try{
+            int idInt = Integer.parseInt(id);
+            ArrayList<ProveedoresEntity> proveedores = ProveedoresController.filtrarPor(nombre, id, direccion);
+            cargarTablaListadoProveedores(proveedores);
+        }catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "El id debe ser un número");
+        }
+        catch (Exception ex){
+            System.out.println("Error al filtrar");
+        }
     }
 
     private void bVaciarFiltro(ActionEvent e) {
@@ -76,10 +84,6 @@ public class ProveedoresView extends JFrame {
         }
     }
 
-    private void button1(ActionEvent e) {
-        // TODO add your code here
-    }
-
     private void bGLimpiar(ActionEvent e) {
         vaciarbG();
     }
@@ -104,14 +108,6 @@ public class ProveedoresView extends JFrame {
         } else {
             JOptionPane.showMessageDialog(null, acciones);
         }
-    }
-
-    private void tabListadoProveedoresComponentShown(ComponentEvent e) {
-        // TODO add your code here
-    }
-
-    private void panel1ComponentShown(ComponentEvent e) {
-        // TODO add your code here
     }
 
     private void bGInsertar(ActionEvent e) {
@@ -191,13 +187,6 @@ public class ProveedoresView extends JFrame {
             //======== panel1 ========
             {
                 panel1.addPropertyChangeListener(e -> TabListaProveedoresPropertyChange(e));
-                panel1.addComponentListener(new ComponentAdapter() {
-                    @Override
-                    public void componentShown(ComponentEvent e) {
-                        panel1ComponentShown(e);
-                        tabListadoProveedoresComponentShown(e);
-                    }
-                });
                 panel1.setLayout(null);
 
                 //======== scrollPane1 ========
@@ -247,10 +236,7 @@ public class ProveedoresView extends JFrame {
 
                 //---- bVaciarFiltro ----
                 bVaciarFiltro.setText("Vaciar filtro");
-                bVaciarFiltro.addActionListener(e -> {
-			button1(e);
-			bVaciarFiltro(e);
-		});
+                bVaciarFiltro.addActionListener(e -> bVaciarFiltro(e));
                 panel1.add(bVaciarFiltro);
                 bVaciarFiltro.setBounds(430, 420, 125, bVaciarFiltro.getPreferredSize().height);
 

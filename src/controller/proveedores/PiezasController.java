@@ -18,7 +18,6 @@ public class PiezasController {
         return piezasEntity;
     }
 
-    //aqui
     public static ArrayList<PiezasEntity> filtrarPor(String nombre, String id) {
 
         String where = " 1 = 1 ";
@@ -50,7 +49,7 @@ public class PiezasController {
 
         if (accion.equals("")) {
             try {
-                Integer idInt = Integer.parseInt(id);
+                int idInt = Integer.parseInt(id);
                 PiezasEntity pieza = getPieza(idInt);
                 if(pieza != null){
                     pieza.setNombre(nombre);
