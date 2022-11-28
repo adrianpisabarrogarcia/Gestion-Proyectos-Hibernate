@@ -3,11 +3,136 @@ JFDML JFormDesigner: "8.0.0.0.194" Java: "17.0.5" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
+			"autoSize": false
+		} ) {
 			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Relaciones Piezas-Proveedores-Proyectos"
+				"font": new java.awt.Font( ".AppleSystemUIFont", 1, 13 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 530
+				"y": 45
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Proveedor:"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 35
+				"y": 90
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextPane" ) {
+					name: "tpProveedor"
+					"editable": false
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 235
+				"y": 90
+				"width": 510
+				"height": 70
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "cbProveedor"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 115
+				"y": 85
+				"width": 95
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Pieza:"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 66
+				"height": 16
+				"x": 35
+				"y": 185
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "cbPieza"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 95
+				"height": 27
+				"x": 115
+				"y": 180
+			} )
+			add( new FormComponent( "javax.swing.JTextPane" ) {
+				name: "tpPieza"
+				"editable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 506
+				"height": 66
+				"x": 235
+				"y": 185
+			} )
+			add( new FormComponent( "javax.swing.JTextPane" ) {
+				name: "tpProyecto"
+				"editable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 506
+				"height": 66
+				"x": 235
+				"y": 290
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Proyecto:"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 66
+				"height": 16
+				"x": 35
+				"y": 290
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "cbProyecto"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 95
+				"height": 27
+				"x": 115
+				"y": 285
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "Cantidad: "
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 235
+				"y": 400
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "tfCantidad"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 310
+				"y": 395
+				"width": 195
+			} )
+			add( new FormContainer( "javax.swing.JToolBar", new FormLayoutManager( class javax.swing.JToolBar ) ) {
+				name: "toolBar1"
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "bInsertar"
+					"text": "Insertar"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "bModificar"
+					"text": "Modificar"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "bEliminar"
+					"text": "Eliminar"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "bListado"
+					"text": "Listado"
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 0
+				"y": 5
+				"width": 825
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 660, 375 )
+			"size": new java.awt.Dimension( 830, 495 )
 		} )
 	}
 }

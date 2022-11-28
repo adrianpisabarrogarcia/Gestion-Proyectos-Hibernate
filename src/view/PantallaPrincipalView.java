@@ -7,6 +7,7 @@ package view;
 import java.awt.event.*;
 
 import view.ayuda.AyudaView;
+import view.gestion.PiezasProveedoresProyectosView;
 import view.piezas.PiezasView;
 import view.proveedores.ProveedoresView;
 import view.proyectos.ProyectosView;
@@ -53,7 +54,8 @@ public class PantallaPrincipalView extends JFrame {
     }
 
     private void mPiezasProveedoresProyectos(ActionEvent e) {
-        // TODO add your code here
+        PiezasProveedoresProyectosView piezasProveedoresProyectosView = new PiezasProveedoresProyectosView();
+        piezasProveedoresProyectosView.setVisible(true);
     }
 
     private void initComponents() {
