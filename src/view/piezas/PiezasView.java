@@ -4,15 +4,12 @@
 
 package view.piezas;
 
-import controller.proveedores.PiezasController;
-import controller.proveedores.ProveedoresController;
+import controller.generales.PiezasController;
 import model.PiezasEntity;
-import model.ProveedoresEntity;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
@@ -175,7 +172,7 @@ public class PiezasView extends JFrame {
      * nada más incializar el componente de piezas.
      */
     private void cargarTodasLasPiezas(){
-        // Cargamos todos los proveedores
+        // Cargamos todos los generales
         ArrayList<PiezasEntity> piezas = PiezasController.getPiezas();
         cargarTablaListadoPiezas(piezas);
     }

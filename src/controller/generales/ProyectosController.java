@@ -1,7 +1,6 @@
-package controller.proveedores;
+package controller.generales;
 
 import controller.hibernate.Utils;
-import model.ProveedoresEntity;
 import model.ProyectosEntity;
 
 import javax.swing.*;

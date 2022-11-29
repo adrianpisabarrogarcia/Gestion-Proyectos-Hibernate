@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class Utils {
@@ -67,6 +68,22 @@ public class Utils {
 
         return object;
     }
+
+    public static Object getRelation(Class clase, Object object) {
+        SessionFactory sessionFactory = getConfig().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        //Get object
+        Object rsObject = session.get(clase, (Serializable) object);
+
+        transaction.commit();
+        session.close();
+        sessionFactory.close();
+
+        return rsObject;
+    }
+
 
     public static List<Object> getAll(Class clase) {
         SessionFactory sessionFactory = getConfig().buildSessionFactory();

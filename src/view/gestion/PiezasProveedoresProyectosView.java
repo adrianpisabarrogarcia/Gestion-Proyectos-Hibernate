@@ -4,7 +4,16 @@
 
 package view.gestion;
 
+import controller.generales.PiezasController;
+import controller.generales.ProveedoresController;
+import controller.generales.ProyectosController;
+import model.PiezasEntity;
+import model.ProveedoresEntity;
+import model.ProyectosEntity;
+
 import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -14,6 +23,48 @@ public class PiezasProveedoresProyectosView extends JFrame {
     public PiezasProveedoresProyectosView() {
         initComponents();
         this.setTitle("Gestión global - Piezas, Proveedores y Proyectos");
+        cargarDatos();
+    }
+
+    // Carga los datos en los combobox
+    private void cargarDatos() {
+        ArrayList<PiezasEntity> piezas = PiezasController.getPiezas();
+        int contadorPiezas = 0;
+        for (PiezasEntity pieza : piezas) {
+            cbPieza.addItem(Integer.toString(pieza.getId()));
+            if (contadorPiezas == 0) {
+                tpPieza.setText(pieza.toString());
+            }
+            contadorPiezas++;
+        }
+        ArrayList<ProveedoresEntity> proveedores = ProveedoresController.getProveedores();
+        int contadorProveedores = 0;
+        for (ProveedoresEntity proveedor : proveedores) {
+            cbProveedor.addItem(Integer.toString(proveedor.getId()));
+            if (contadorProveedores == 0) {
+                tpProveedor.setText(proveedor.toString());
+            }
+            contadorProveedores++;
+        }
+        ArrayList<ProyectosEntity> proyectos = ProyectosController.getProyectos();
+        int contadorProyectos = 0;
+        for (ProyectosEntity proyecto : proyectos) {
+            cbProyecto.addItem(Integer.toString(proyecto.getId()));
+            if (contadorProyectos == 0) {
+                tpProyecto.setText(proyecto.toString());
+            }
+            contadorProyectos++;
+        }
+
+    }
+
+    private void bInsertar(ActionEvent e) {
+
+    }
+
+    private void cbProveedorItemStateChanged(ItemEvent e) {
+        String selected = (String) cbProveedor.getSelectedItem();
+        System.out.println(selected);
     }
 
     private void initComponents() {
@@ -45,7 +96,7 @@ public class PiezasProveedoresProyectosView extends JFrame {
         label1.setText("Relaciones Piezas-Proveedores-Proyectos");
         label1.setFont(new Font(".AppleSystemUIFont", Font.BOLD, 13));
         contentPane.add(label1);
-        label1.setBounds(new Rectangle(new Point(530, 45), label1.getPreferredSize()));
+        label1.setBounds(new Rectangle(new Point(500, 40), label1.getPreferredSize()));
 
         //---- label2 ----
         label2.setText("Proveedor:");
@@ -61,6 +112,9 @@ public class PiezasProveedoresProyectosView extends JFrame {
         }
         contentPane.add(scrollPane1);
         scrollPane1.setBounds(235, 90, 510, 70);
+
+        //---- cbProveedor ----
+        cbProveedor.addItemListener(e -> cbProveedorItemStateChanged(e));
         contentPane.add(cbProveedor);
         cbProveedor.setBounds(115, 85, 95, cbProveedor.getPreferredSize().height);
 
@@ -100,6 +154,7 @@ public class PiezasProveedoresProyectosView extends JFrame {
 
             //---- bInsertar ----
             bInsertar.setText("Insertar");
+            bInsertar.addActionListener(e -> bInsertar(e));
             toolBar1.add(bInsertar);
 
             //---- bModificar ----

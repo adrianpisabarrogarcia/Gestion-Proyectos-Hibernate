@@ -4,9 +4,7 @@
 
 package view.proyectos;
 
-import controller.proveedores.PiezasController;
-import controller.proveedores.ProyectosController;
-import model.PiezasEntity;
+import controller.generales.ProyectosController;
 import model.ProyectosEntity;
 
 import javax.swing.*;

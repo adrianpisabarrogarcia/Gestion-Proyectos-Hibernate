@@ -50,7 +50,7 @@ CREATE TABLE `piezas` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `proveedores`
+-- Estructura de tabla para la tabla `generales`
 --
 
 CREATE TABLE `proveedores` (
@@ -91,7 +91,7 @@ ALTER TABLE `piezas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `proveedores`
+-- Indices de la tabla `generales`
 --
 ALTER TABLE `proveedores`
   ADD PRIMARY KEY (`id`);
@@ -113,7 +113,7 @@ ALTER TABLE `piezas`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `proveedores`
+-- AUTO_INCREMENT de la tabla `generales`
 --
 ALTER TABLE `proveedores`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;

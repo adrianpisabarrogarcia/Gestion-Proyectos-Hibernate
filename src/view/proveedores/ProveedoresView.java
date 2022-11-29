@@ -7,7 +7,7 @@ package view.proveedores;
 import java.awt.event.*;
 import java.beans.*;
 
-import controller.proveedores.ProveedoresController;
+import controller.generales.ProveedoresController;
 import model.ProveedoresEntity;
 
 import java.awt.*;
@@ -352,7 +352,7 @@ public class ProveedoresView extends JFrame {
     //Métodos personalizados
 
     /**
-     * Carga todos los proveedores pasados por parámetro a la tabla.
+     * Carga todos los generales pasados por parámetro a la tabla.
      * @param proveedores
      */
     private void cargarTablaListadoProveedores(ArrayList<ProveedoresEntity> proveedores) {
@@ -369,12 +369,12 @@ public class ProveedoresView extends JFrame {
     }
 
     /**
-     * Carga todos los proveedores de la base de datos a la tabla,
-     * nada más incializar el componente de proveedores.
+     * Carga todos los generales de la base de datos a la tabla,
+     * nada más incializar el componente de generales.
      */
     private void cargarTodosLosProveedores(){
-        // Cargamos todos los proveedores
-        ArrayList<ProveedoresEntity> proveedores = controller.proveedores.ProveedoresController.getProveedores();
+        // Cargamos todos los generales
+        ArrayList<ProveedoresEntity> proveedores = controller.generales.ProveedoresController.getProveedores();
         cargarTablaListadoProveedores(proveedores);
     }
 

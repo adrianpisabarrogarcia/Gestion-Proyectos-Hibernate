@@ -1,4 +1,4 @@
-package controller.proveedores;
+package controller.generales;
 
 import controller.hibernate.Utils;
 import model.PiezasEntity;
