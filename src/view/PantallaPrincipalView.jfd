@@ -44,10 +44,12 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "mSuministrosPorProveedores"
 						"text": "Suministros por proveedores"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "mSuministrosPorProveedores", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "mSuministrosPorPiezas"
 						"text": "Suministros por piezas"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "mSuministrosPorPiezas", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "mEstadisticas"

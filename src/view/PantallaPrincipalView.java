@@ -8,6 +8,8 @@ import java.awt.event.*;
 
 import view.ayuda.AyudaView;
 import view.gestion.PiezasProveedoresProyectosView;
+import view.gestion.SuministrosPorPiezaView;
+import view.gestion.SuministrosPorProveedorView;
 import view.piezas.PiezasView;
 import view.proveedores.ProveedoresView;
 import view.proyectos.ProyectosView;
@@ -56,6 +58,16 @@ public class PantallaPrincipalView extends JFrame {
     private void mPiezasProveedoresProyectos(ActionEvent e) {
         PiezasProveedoresProyectosView piezasProveedoresProyectosView = new PiezasProveedoresProyectosView();
         piezasProveedoresProyectosView.setVisible(true);
+    }
+
+    private void mSuministrosPorProveedores(ActionEvent e) {
+        SuministrosPorProveedorView suministrosPorProveedorView = new SuministrosPorProveedorView();
+        suministrosPorProveedorView.setVisible(true);
+    }
+
+    private void mSuministrosPorPiezas(ActionEvent e) {
+        SuministrosPorPiezaView suministrosPorPiezaView = new SuministrosPorPiezaView();
+        suministrosPorPiezaView.setVisible(true);
     }
 
     private void initComponents() {
@@ -107,10 +119,12 @@ public class PantallaPrincipalView extends JFrame {
 
                 //---- mSuministrosPorProveedores ----
                 mSuministrosPorProveedores.setText("Suministros por proveedores");
+                mSuministrosPorProveedores.addActionListener(e -> mSuministrosPorProveedores(e));
                 menu1.add(mSuministrosPorProveedores);
 
                 //---- mSuministrosPorPiezas ----
                 mSuministrosPorPiezas.setText("Suministros por piezas");
+                mSuministrosPorPiezas.addActionListener(e -> mSuministrosPorPiezas(e));
                 menu1.add(mSuministrosPorPiezas);
 
                 //---- mEstadisticas ----

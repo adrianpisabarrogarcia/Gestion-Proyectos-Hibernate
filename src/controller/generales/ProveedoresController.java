@@ -1,6 +1,7 @@
 package controller.generales;
 
 import controller.hibernate.Utils;
+import model.PiezasEntity;
 import model.ProveedoresEntity;
 
 import javax.swing.*;
@@ -16,6 +17,15 @@ public class ProveedoresController {
             proveedoresEntity.add((ProveedoresEntity) proveedor);
         }
         return proveedoresEntity;
+    }
+
+    public static ArrayList<PiezasEntity> getPiezas() {
+        List<Object> piezas = Utils.getAll(PiezasEntity.class);
+        ArrayList<PiezasEntity> piezasEntity = new ArrayList<>();
+        for (Object pieza : piezas) {
+            piezasEntity.add((PiezasEntity) pieza);
+        }
+        return piezasEntity;
     }
 
     public static ArrayList<ProveedoresEntity> filtrarPor(String nombre, String id, String direccion) {

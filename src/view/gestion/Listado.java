@@ -4,7 +4,7 @@
 
 package view.gestion;
 
-import controller.generales.PiezasProveedoresProyectosController;
+import controller.generales.GestionController;
 
 import java.awt.*;
 import javax.swing.*;
@@ -20,7 +20,7 @@ public class Listado extends JFrame {
     }
 
     private void cargarListado() {
-        String listado = PiezasProveedoresProyectosController.getListado();
+        String listado = GestionController.getListado();
         jtpListado.setText(listado);
     }
 

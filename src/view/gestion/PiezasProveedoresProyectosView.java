@@ -5,7 +5,7 @@
 package view.gestion;
 
 import controller.generales.PiezasController;
-import controller.generales.PiezasProveedoresProyectosController;
+import controller.generales.GestionController;
 import controller.generales.ProveedoresController;
 import controller.generales.ProyectosController;
 import model.GestionEntity;
@@ -68,7 +68,7 @@ public class PiezasProveedoresProyectosView extends JFrame {
             ProveedoresEntity proveedor = proveedores.get(0);
             int idProveedor = proveedor.getId();
 
-            GestionEntity gestion = PiezasProveedoresProyectosController.getProveedorPiezaProyecto(idPieza, idProveedor, idProyecto);
+            GestionEntity gestion = GestionController.getProveedorPiezaProyecto(idPieza, idProveedor, idProyecto);
             if (gestion != null) {
                 tfCantidad.setText(gestion.getCantidad().toString());
             }
@@ -87,7 +87,7 @@ public class PiezasProveedoresProyectosView extends JFrame {
         tpPieza.setText(pieza.toString());
         tpProveedor.setText(proveedor.toString());
         tpProyecto.setText(proyecto.toString());
-        GestionEntity gestion = PiezasProveedoresProyectosController.getProveedorPiezaProyecto(idPieza, idProveedor, idProyecto);
+        GestionEntity gestion = GestionController.getProveedorPiezaProyecto(idPieza, idProveedor, idProyecto);
         if (gestion != null) {
             tfCantidad.setText(gestion.getCantidad().toString());
         } else {
@@ -100,7 +100,7 @@ public class PiezasProveedoresProyectosView extends JFrame {
         int idPieza = Integer.parseInt(cbPieza.getSelectedItem().toString());
         int idProveedor = Integer.parseInt(cbProveedor.getSelectedItem().toString());
         int idProyecto = Integer.parseInt(cbProyecto.getSelectedItem().toString());
-        String accion = PiezasProveedoresProyectosController.insertarPiezaProveedorProyecto(idPieza, idProveedor, idProyecto, cantidad);
+        String accion = GestionController.insertarPiezaProveedorProyecto(idPieza, idProveedor, idProyecto, cantidad);
         JOptionPane.showMessageDialog(null, accion);
     }
 
@@ -127,7 +127,7 @@ public class PiezasProveedoresProyectosView extends JFrame {
         int idPieza = Integer.parseInt(cbPieza.getSelectedItem().toString());
         int idProveedor = Integer.parseInt(cbProveedor.getSelectedItem().toString());
         int idProyecto = Integer.parseInt(cbProyecto.getSelectedItem().toString());
-        String accion = PiezasProveedoresProyectosController.modificarPiezaProveedorProyecto(idPieza, idProveedor, idProyecto, cantidad);
+        String accion = GestionController.modificarPiezaProveedorProyecto(idPieza, idProveedor, idProyecto, cantidad);
         JOptionPane.showMessageDialog(null, accion);
     }
 
@@ -135,7 +135,7 @@ public class PiezasProveedoresProyectosView extends JFrame {
         int idPieza = Integer.parseInt(cbPieza.getSelectedItem().toString());
         int idProveedor = Integer.parseInt(cbProveedor.getSelectedItem().toString());
         int idProyecto = Integer.parseInt(cbProyecto.getSelectedItem().toString());
-        String accion = PiezasProveedoresProyectosController.eliminarPiezaProveedorProyecto(idPieza, idProveedor, idProyecto);
+        String accion = GestionController.eliminarPiezaProveedorProyecto(idPieza, idProveedor, idProyecto);
         JOptionPane.showMessageDialog(null, accion);
         if (accion.equals("Se ha eliminado correctamente")) {
             tfCantidad.setText("");

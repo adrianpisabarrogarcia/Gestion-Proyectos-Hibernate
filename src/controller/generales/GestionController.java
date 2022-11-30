@@ -10,21 +10,57 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PiezasProveedoresProyectosController {
+public class GestionController {
     public static GestionEntity getProveedorPiezaProyecto(int idPieza, int idProveedor, int idProyecto) {
-        GestionEntity gestionEntityPK = new GestionEntity();
-        ProveedoresEntity proveedoresEntity = ProveedoresController.getProveedor(idProveedor);
-        gestionEntityPK.setIdproveedor(proveedoresEntity);
-        PiezasEntity piezasEntity = PiezasController.getPieza(idPieza);
-        gestionEntityPK.setIdpieza(piezasEntity);
-        ProyectosEntity proyectosEntity = ProyectosController.getProyecto(idProyecto);
-        gestionEntityPK.setIdproyecto(proyectosEntity);
         List<Object> objects = Utils.getAllWithWhere(GestionEntity.class, "idpieza = " + idPieza + " AND idproveedor = " + idProveedor + " AND idproyecto = " + idProyecto);
-        ArrayList<GestionEntity> gestionEntities = new ArrayList<>();
         for (Object object : objects) {
             return (GestionEntity) object;
         }
         return null;
+    }
+
+    public static ArrayList<PiezasEntity> getGestionFilterByProveedorToPiezas(int idProveedor) {
+        List<Object> objects = Utils.getAllWithWhere(GestionEntity.class, " idproveedor = " + idProveedor);
+        ArrayList<PiezasEntity> piezas = new ArrayList<>();
+        for (Object object : objects) {
+            GestionEntity gestionEntity = (GestionEntity) object;
+            PiezasEntity pieza = PiezasController.getPieza(gestionEntity.getIdpieza().getId());
+            piezas.add(pieza);
+        }
+        return piezas;
+    }
+
+    public static ArrayList<ProveedoresEntity> getGestionFilterByPizasToProveedor(int idPieza) {
+        List<Object> objects = Utils.getAllWithWhere(GestionEntity.class, " idpieza = " + idPieza);
+        ArrayList<ProveedoresEntity> proveedores = new ArrayList<>();
+        for (Object object : objects) {
+            GestionEntity gestionEntity = (GestionEntity) object;
+            ProveedoresEntity proveedor = ProveedoresController.getProveedor(gestionEntity.getIdproveedor().getId());
+            proveedores.add(proveedor);
+        }
+        return proveedores;
+    }
+
+    public static ArrayList<ProyectosEntity> getGestionFilterByPizasToProyecto(int idProyecto) {
+        List<Object> objects = Utils.getAllWithWhere(GestionEntity.class, " idproyecto = " + idProyecto);
+        ArrayList<ProyectosEntity> proyectos = new ArrayList<>();
+        for (Object object : objects) {
+            GestionEntity gestionEntity = (GestionEntity) object;
+            ProyectosEntity proyecto = ProyectosController.getProyecto(gestionEntity.getIdproyecto().getId());
+            proyectos.add(proyecto);
+        }
+        return proyectos;
+    }
+
+    public static ArrayList<ProyectosEntity> getGestionFilterByProveedorToProyectos(int idProveedor) {
+        List<Object> objects = Utils.getAllWithWhere(GestionEntity.class, " idproveedor = " + idProveedor);
+        ArrayList<ProyectosEntity> proyectos = new ArrayList<>();
+        for (Object object : objects) {
+            GestionEntity gestionEntity = (GestionEntity) object;
+            ProyectosEntity proyecto = ProyectosController.getProyecto(gestionEntity.getIdproyecto().getId());
+            proyectos.add(proyecto);
+        }
+        return proyectos;
     }
 
     public static String insertarPiezaProveedorProyecto(int idPieza, int idProveedor, int idProyecto, String cantidad) {
@@ -47,8 +83,6 @@ public class PiezasProveedoresProyectosController {
             }
         }
         return accion;
-
-
     }
 
     private static String comprobar(String cantidad) {
@@ -103,4 +137,6 @@ public class PiezasProveedoresProyectosController {
         }
         return listado;
     }
+
+
 }
