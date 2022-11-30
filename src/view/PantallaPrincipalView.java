@@ -66,6 +66,9 @@ public class PantallaPrincipalView extends JFrame {
         mProyectos = new JMenuItem();
         menu1 = new JMenu();
         mPiezasProveedoresProyectos = new JMenuItem();
+        mSuministrosPorProveedores = new JMenuItem();
+        mSuministrosPorPiezas = new JMenuItem();
+        mEstadisticas = new JMenuItem();
         mAyuda = new JMenuItem();
         label1 = new JLabel();
 
@@ -101,6 +104,18 @@ public class PantallaPrincipalView extends JFrame {
                 mPiezasProveedoresProyectos.setText("Piezas, Proveedores y Proyectos");
                 mPiezasProveedoresProyectos.addActionListener(e -> mPiezasProveedoresProyectos(e));
                 menu1.add(mPiezasProveedoresProyectos);
+
+                //---- mSuministrosPorProveedores ----
+                mSuministrosPorProveedores.setText("Suministros por proveedores");
+                menu1.add(mSuministrosPorProveedores);
+
+                //---- mSuministrosPorPiezas ----
+                mSuministrosPorPiezas.setText("Suministros por piezas");
+                menu1.add(mSuministrosPorPiezas);
+
+                //---- mEstadisticas ----
+                mEstadisticas.setText("Estad\u00edsticas");
+                menu1.add(mEstadisticas);
             }
             menuBar1.add(menu1);
 
@@ -129,6 +144,9 @@ public class PantallaPrincipalView extends JFrame {
     private JMenuItem mProyectos;
     private JMenu menu1;
     private JMenuItem mPiezasProveedoresProyectos;
+    private JMenuItem mSuministrosPorProveedores;
+    private JMenuItem mSuministrosPorPiezas;
+    private JMenuItem mEstadisticas;
     private JMenuItem mAyuda;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on

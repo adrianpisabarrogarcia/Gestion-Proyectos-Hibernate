@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name = "piezas", schema = "gestionproyectos")
 public class PiezasEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
     @Column(name = "id", nullable = false)
     private int id;
     @Basic

@@ -1,56 +1,85 @@
 package model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "gestion", schema = "gestionproyectos", catalog = "")
-@IdClass(GestionEntityPK.class)
-public class GestionEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Table(name = "gestion", schema = "gestionproyectos")
+public class GestionEntity implements java.io.Serializable {
     @Id
-    @Column(name = "idproveedor", nullable = false)
-    private int idproveedor;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "idpieza", nullable = false)
-    private int idpieza;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "idproyecto", nullable = false)
-    private int idproyecto;
-    @Basic
-    @Column(name = "cantidad", nullable = true, precision = 0)
-    private Double cantidad;
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
-    public int getIdproveedor() {
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "idproveedor", nullable = false)
+    private ProveedoresEntity idproveedor;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "idpieza", nullable = false)
+    private PiezasEntity idpieza;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "idproyecto", nullable = false)
+    private ProyectosEntity idproyecto;
+
+    @Column(name = "cantidad")
+    private Float cantidad;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public ProveedoresEntity getIdproveedor() {
         return idproveedor;
     }
 
-    public void setIdproveedor(int idproveedor) {
+    public void setIdproveedor(ProveedoresEntity idproveedor) {
         this.idproveedor = idproveedor;
     }
 
-    public int getIdpieza() {
+    public PiezasEntity getIdpieza() {
         return idpieza;
     }
 
-    public void setIdpieza(int idpieza) {
+    public void setIdpieza(PiezasEntity idpieza) {
         this.idpieza = idpieza;
     }
 
-    public int getIdproyecto() {
+    public ProyectosEntity getIdproyecto() {
         return idproyecto;
     }
 
-    public void setIdproyecto(int idproyecto) {
+    public void setIdproyecto(ProyectosEntity idproyecto) {
         this.idproyecto = idproyecto;
     }
 
-    public Double getCantidad() {
+    public Float getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Double cantidad) {
+    public void setCantidad(Float cantidad) {
         this.cantidad = cantidad;
+    }
+
+
+    @Override
+    public String toString() {
+        return "GestionEntity{" +
+                "id=" + id +
+                ", proveedor=" + idproveedor +
+                ", pieza=" + idpieza +
+                ", proyecto=" + idproyecto +
+                ", cantidad=" + cantidad +
+                '}';
     }
 }

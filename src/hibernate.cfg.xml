@@ -4,11 +4,9 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.ejb.metamodel.population">disabled</property>
     <property name="connection.url">jdbc:mariadb://localhost:3306/gestionproyectos</property>
     <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
     <property name="connection.username">root</property>
-    <property name="connection.password"></property>
     <mapping class="model.GestionEntity"/>
       <mapping resource="GestionEntity.hbm.xml"/>
       <mapping class="model.PiezasEntity"/>

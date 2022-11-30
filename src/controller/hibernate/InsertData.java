@@ -188,73 +188,14 @@ public class InsertData {
 
     public static void insertGestion(){
         GestionEntity gestion1 = new GestionEntity();
-        gestion1.setIdpieza(1);
-        gestion1.setIdproveedor(1);
-        gestion1.setIdproyecto(1);
-        gestion1.setCantidad(10.0);
+        PiezasEntity pieza1 = (PiezasEntity) Utils.get(PiezasEntity.class, 1);
+        ProveedoresEntity proveedor1 = (ProveedoresEntity) Utils.get(ProveedoresEntity.class, 1);
+        ProyectosEntity proyecto1 = (ProyectosEntity) Utils.get(ProyectosEntity.class, 1);
+        gestion1.setIdpieza(pieza1);
+        gestion1.setIdproveedor(proveedor1);
+        gestion1.setIdproyecto(proyecto1);
+        gestion1.setCantidad(10.0F);
         Utils.save(gestion1);
 
-        GestionEntity gestion2 = new GestionEntity();
-        gestion2.setIdpieza(2);
-        gestion2.setIdproveedor(2);
-        gestion2.setIdproyecto(2);
-        gestion2.setCantidad(20.0);
-        Utils.save(gestion2);
-
-        GestionEntity gestion3 = new GestionEntity();
-        gestion3.setIdpieza(3);
-        gestion3.setIdproveedor(3);
-        gestion3.setIdproyecto(3);
-        gestion3.setCantidad(30.0);
-        Utils.save(gestion3);
-
-        GestionEntity gestion4 = new GestionEntity();
-        gestion4.setIdpieza(4);
-        gestion4.setIdproveedor(4);
-        gestion4.setIdproyecto(4);
-        gestion4.setCantidad(40.0);
-        Utils.save(gestion4);
-
-        GestionEntity gestion5 = new GestionEntity();
-        gestion5.setIdpieza(5);
-        gestion5.setIdproveedor(5);
-        gestion5.setIdproyecto(5);
-        gestion5.setCantidad(50.0);
-        Utils.save(gestion5);
-
-        GestionEntity gestion6 = new GestionEntity();
-        gestion6.setIdpieza(6);
-        gestion6.setIdproveedor(6);
-        gestion6.setIdproyecto(6);
-        gestion6.setCantidad(60.0);
-        Utils.save(gestion6);
-
-        GestionEntity gestion7 = new GestionEntity();
-        gestion7.setIdpieza(7);
-        gestion7.setIdproveedor(7);
-        gestion7.setIdproyecto(7);
-        gestion7.setCantidad(70.0);
-        Utils.save(gestion7);
-
-        GestionEntity gestion8 = new GestionEntity();
-        gestion8.setIdpieza(8);
-        gestion8.setIdproveedor(8);
-        gestion8.setIdproyecto(8);
-        gestion8.setCantidad(80.0);
-        Utils.save(gestion8);
-
-        GestionEntity gestion9 = new GestionEntity();
-        gestion9.setIdpieza(9);
-        gestion9.setIdproveedor(9);
-        gestion9.setIdproyecto(9);
-        gestion9.setCantidad(90.0);
-        Utils.save(gestion9);
-
-        GestionEntity gestion10 = new GestionEntity();
-        gestion10.setIdpieza(10);
-        gestion10.setIdproveedor(10);
-        gestion10.setIdproyecto(10);
-        gestion10.setCantidad(100.0);
-        Utils.save(gestion10);
     }
 }

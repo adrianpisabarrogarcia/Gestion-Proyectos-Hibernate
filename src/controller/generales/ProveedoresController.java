@@ -31,9 +31,6 @@ public class ProveedoresController {
             where += "AND UPPER(direccion) LIKE '%" + direccion.toUpperCase() + "%' ";
         }
 
-
-        System.out.println(where);
-
         List<Object> objects = Utils.getAllWithWhere(ProveedoresEntity.class, where);
         ArrayList<ProveedoresEntity> proveedoresEntity = new ArrayList<>();
         for (Object object : objects) {

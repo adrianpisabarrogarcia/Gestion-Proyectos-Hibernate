@@ -28,8 +28,6 @@ public class PiezasController {
             where += "AND id = " + id + " ";
         }
 
-        System.out.println(where);
-
         List<Object> objects = Utils.getAllWithWhere(PiezasEntity.class, where);
         ArrayList<PiezasEntity> piezasEntity = new ArrayList<>();
         for (Object object : objects) {

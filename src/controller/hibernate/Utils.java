@@ -75,13 +75,13 @@ public class Utils {
         Transaction transaction = session.beginTransaction();
 
         //Get object
-        Object rsObject = session.get(clase, (Serializable) object);
+        Object object1 = session.get(clase, (Serializable) object);
 
         transaction.commit();
         session.close();
         sessionFactory.close();
 
-        return rsObject;
+        return object1;
     }
 
 

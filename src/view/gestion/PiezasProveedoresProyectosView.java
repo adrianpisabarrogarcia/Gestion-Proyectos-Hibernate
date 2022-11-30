@@ -5,8 +5,10 @@
 package view.gestion;
 
 import controller.generales.PiezasController;
+import controller.generales.PiezasProveedoresProyectosController;
 import controller.generales.ProveedoresController;
 import controller.generales.ProyectosController;
+import model.GestionEntity;
 import model.PiezasEntity;
 import model.ProveedoresEntity;
 import model.ProyectosEntity;
@@ -20,13 +22,15 @@ import javax.swing.*;
  * @author adrianpisabarrogarcia
  */
 public class PiezasProveedoresProyectosView extends JFrame {
+
+    private boolean isUpdate = false;
     public PiezasProveedoresProyectosView() {
         initComponents();
         this.setTitle("Gestión global - Piezas, Proveedores y Proyectos");
         cargarDatos();
     }
 
-    // Carga los datos en los combobox
+    // Carga los datos en los combobox nada más abrir la ventana
     private void cargarDatos() {
         ArrayList<PiezasEntity> piezas = PiezasController.getPiezas();
         int contadorPiezas = 0;
@@ -56,15 +60,91 @@ public class PiezasProveedoresProyectosView extends JFrame {
             contadorProyectos++;
         }
 
+        if (piezas.size() > 0 && proveedores.size() > 0 && proyectos.size() > 0) {
+            PiezasEntity pieza = piezas.get(0);
+            int idPieza = pieza.getId();
+            ProyectosEntity proyecto = proyectos.get(0);
+            int idProyecto = proyecto.getId();
+            ProveedoresEntity proveedor = proveedores.get(0);
+            int idProveedor = proveedor.getId();
+
+            GestionEntity gestion = PiezasProveedoresProyectosController.getProveedorPiezaProyecto(idPieza, idProveedor, idProyecto);
+            if (gestion != null) {
+                tfCantidad.setText(gestion.getCantidad().toString());
+            }
+        }
+        isUpdate = true;
+    }
+
+    // Cargar los datos en los textpane cuando se cambia el combobox e imprimir si existe la cantidad
+    private void cargarDatosSelected(){
+        int idPieza = Integer.parseInt(cbPieza.getSelectedItem().toString());
+        int idProveedor = Integer.parseInt(cbProveedor.getSelectedItem().toString());
+        int idProyecto = Integer.parseInt(cbProyecto.getSelectedItem().toString());
+        PiezasEntity pieza = PiezasController.getPieza(idPieza);
+        ProveedoresEntity proveedor = ProveedoresController.getProveedor(idProveedor);
+        ProyectosEntity proyecto = ProyectosController.getProyecto(idProyecto);
+        tpPieza.setText(pieza.toString());
+        tpProveedor.setText(proveedor.toString());
+        tpProyecto.setText(proyecto.toString());
+        GestionEntity gestion = PiezasProveedoresProyectosController.getProveedorPiezaProyecto(idPieza, idProveedor, idProyecto);
+        if (gestion != null) {
+            tfCantidad.setText(gestion.getCantidad().toString());
+        } else {
+            tfCantidad.setText("");
+        }
     }
 
     private void bInsertar(ActionEvent e) {
-
+        String cantidad = tfCantidad.getText();
+        int idPieza = Integer.parseInt(cbPieza.getSelectedItem().toString());
+        int idProveedor = Integer.parseInt(cbProveedor.getSelectedItem().toString());
+        int idProyecto = Integer.parseInt(cbProyecto.getSelectedItem().toString());
+        String accion = PiezasProveedoresProyectosController.insertarPiezaProveedorProyecto(idPieza, idProveedor, idProyecto, cantidad);
+        JOptionPane.showMessageDialog(null, accion);
     }
 
     private void cbProveedorItemStateChanged(ItemEvent e) {
-        String selected = (String) cbProveedor.getSelectedItem();
-        System.out.println(selected);
+        if(isUpdate){
+            cargarDatosSelected();
+        }
+    }
+
+    private void cbPiezaItemStateChanged(ItemEvent e) {
+        if(isUpdate){
+            cargarDatosSelected();
+        }
+    }
+
+    private void cbProyectoItemStateChanged(ItemEvent e) {
+        if(isUpdate){
+            cargarDatosSelected();
+        }
+    }
+
+    private void bModificar(ActionEvent e) {
+        String cantidad = tfCantidad.getText();
+        int idPieza = Integer.parseInt(cbPieza.getSelectedItem().toString());
+        int idProveedor = Integer.parseInt(cbProveedor.getSelectedItem().toString());
+        int idProyecto = Integer.parseInt(cbProyecto.getSelectedItem().toString());
+        String accion = PiezasProveedoresProyectosController.modificarPiezaProveedorProyecto(idPieza, idProveedor, idProyecto, cantidad);
+        JOptionPane.showMessageDialog(null, accion);
+    }
+
+    private void bEliminar(ActionEvent e) {
+        int idPieza = Integer.parseInt(cbPieza.getSelectedItem().toString());
+        int idProveedor = Integer.parseInt(cbProveedor.getSelectedItem().toString());
+        int idProyecto = Integer.parseInt(cbProyecto.getSelectedItem().toString());
+        String accion = PiezasProveedoresProyectosController.eliminarPiezaProveedorProyecto(idPieza, idProveedor, idProyecto);
+        JOptionPane.showMessageDialog(null, accion);
+        if (accion.equals("Se ha eliminado correctamente")) {
+            tfCantidad.setText("");
+        }
+    }
+
+    private void bListado(ActionEvent e) {
+        Listado listado = new Listado();
+        listado.setVisible(true);
     }
 
     private void initComponents() {
@@ -122,6 +202,9 @@ public class PiezasProveedoresProyectosView extends JFrame {
         label3.setText("Pieza:");
         contentPane.add(label3);
         label3.setBounds(35, 185, 66, 16);
+
+        //---- cbPieza ----
+        cbPieza.addItemListener(e -> cbPiezaItemStateChanged(e));
         contentPane.add(cbPieza);
         cbPieza.setBounds(115, 180, 95, 27);
 
@@ -139,6 +222,9 @@ public class PiezasProveedoresProyectosView extends JFrame {
         label4.setText("Proyecto:");
         contentPane.add(label4);
         label4.setBounds(35, 290, 66, 16);
+
+        //---- cbProyecto ----
+        cbProyecto.addItemListener(e -> cbProyectoItemStateChanged(e));
         contentPane.add(cbProyecto);
         cbProyecto.setBounds(115, 285, 95, 27);
 
@@ -159,14 +245,17 @@ public class PiezasProveedoresProyectosView extends JFrame {
 
             //---- bModificar ----
             bModificar.setText("Modificar");
+            bModificar.addActionListener(e -> bModificar(e));
             toolBar1.add(bModificar);
 
             //---- bEliminar ----
             bEliminar.setText("Eliminar");
+            bEliminar.addActionListener(e -> bEliminar(e));
             toolBar1.add(bEliminar);
 
             //---- bListado ----
             bListado.setText("Listado");
+            bListado.addActionListener(e -> bListado(e));
             toolBar1.add(bListado);
         }
         contentPane.add(toolBar1);

@@ -53,6 +53,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JComboBox" ) {
 				name: "cbPieza"
+				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "cbPiezaItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 95
 				"height": 27
@@ -88,6 +89,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JComboBox" ) {
 				name: "cbProyecto"
+				addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "cbProyectoItemStateChanged", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 95
 				"height": 27
@@ -118,14 +120,17 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "bModificar"
 					"text": "Modificar"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bModificar", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "bEliminar"
 					"text": "Eliminar"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bEliminar", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "bListado"
 					"text": "Listado"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "bListado", true ) )
 				} )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 0
