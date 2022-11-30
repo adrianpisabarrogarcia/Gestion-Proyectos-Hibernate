@@ -42,7 +42,7 @@ public class ProyectosEntity {
 
     @Override
     public String toString() {
-        return "ProyectosEntity{" +
+        return "Proyecto {" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", ciudad='" + ciudad + '\'' +

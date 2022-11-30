@@ -52,7 +52,7 @@ public class PiezasEntity {
 
     @Override
     public String toString() {
-        return "PiezasEntity{" +
+        return "Pieza {" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", precio=" + precio +

@@ -55,7 +55,7 @@ public class ProveedoresEntity {
 
     @Override
     public String toString() {
-        return "ProveedoresEntity{" +
+        return "Proveedor {" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +

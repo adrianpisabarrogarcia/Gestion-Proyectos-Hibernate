@@ -74,7 +74,7 @@ public class GestionEntity implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "GestionEntity{" +
+        return "Gestion {" +
                 "id=" + id +
                 ", proveedor=" + idproveedor +
                 ", pieza=" + idpieza +
