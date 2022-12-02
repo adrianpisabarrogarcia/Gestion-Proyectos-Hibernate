@@ -54,6 +54,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "mEstadisticas"
 						"text": "Estadísticas"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "mEstadisticas", true ) )
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JMenuItem" ) {

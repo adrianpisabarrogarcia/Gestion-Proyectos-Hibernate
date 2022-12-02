@@ -120,8 +120,7 @@ public class Utils {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        //Get object
-        List<Object> objects = session.createQuery(query).list();
+        List<Object> objects = session.createSQLQuery(query).list();
 
         transaction.commit();
         session.close();

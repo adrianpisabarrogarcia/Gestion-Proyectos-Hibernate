@@ -4,8 +4,18 @@
 
 package view.gestion;
 
+import controller.generales.GestionController;
+import controller.generales.ProveedoresController;
+import model.GestionEntity;
+import model.PiezasEntity;
+import model.ProveedoresEntity;
+import model.ProyectosEntity;
+
 import java.awt.*;
+import java.util.ArrayList;
 import javax.swing.*;
+
+import static controller.generales.GestionController.piezaConMasProyectos;
 
 /**
  * @author unknown
@@ -14,6 +24,96 @@ public class Estadisticas extends JFrame {
     public Estadisticas() {
         initComponents();
         this.setTitle("Resúmenes estadísticos - Piezas, proyectos y proveedores");
+        cargarTabla1();
+        piezaConMasCantidad();
+        piezaCountMasProyectos();
+        cargarTabla2();
+        proveedorConMasCantidadPiezas();
+        proveedorConMasProyectos();
+        proveedorConMasPiezas();
+
+    }
+
+    private void proveedorConMasPiezas() {
+        ProveedoresEntity proveedor = GestionController.proveedorConMasPiezas();
+        if (proveedor != null) {
+            textPane5.setText(proveedor.toString());
+        }else{
+            textPane5.setText("No hay proveedores");
+        }
+    }
+
+    private void proveedorConMasProyectos() {
+        ProveedoresEntity proveedor = GestionController.proveedorConMasProyectos();
+        if (proveedor != null) {
+            textPane4.setText(proveedor.toString());
+        }else{
+            textPane4.setText("No hay proveedores");
+        }
+    }
+
+    private void proveedorConMasCantidadPiezas() {
+        ProveedoresEntity proveedor = GestionController.proveedorConMasCantidadPiezas();
+        if (proveedor != null) {
+            textPane3.setText(proveedor.toString());
+        }else{
+            textPane3.setText("No hay proveedores");
+        }
+    }
+
+    private void cargarTabla2() {
+        ArrayList<String[]> elementos = GestionController.numPiezasPorProveedores();
+        Object[][] data = new Object[elementos.size()][6];
+        for (int i = 0; i < elementos.size(); i++) {
+            data[i][0] = elementos.get(i)[0];
+            data[i][1] = elementos.get(i)[1];
+            data[i][2] = elementos.get(i)[2];
+            data[i][3] = elementos.get(i)[3];
+            data[i][4] = elementos.get(i)[4];
+            data[i][5] = elementos.get(i)[5];
+        }
+
+        table2.setModel(new javax.swing.table.DefaultTableModel(
+                data,
+                new String [] {
+                        "ID Proveedor", "Nombre", "Apellidos", "Direccion", "Nº de peizas", "Cantidad total"
+                }
+        ));
+    }
+
+    private void piezaCountMasProyectos() {
+        PiezasEntity pieza = piezaConMasProyectos();
+        if (pieza != null) {
+            textPane1.setText(pieza.toString());
+        } else {
+            textPane1.setText("No hay piezas");
+        }
+    }
+
+    private void piezaConMasCantidad() {
+        PiezasEntity pieza = GestionController.piezaConMasCantidad();
+        if (pieza != null) {
+            piezaMasGrande.setText(pieza.toString());
+        }
+    }
+
+    private void cargarTabla1() {
+        ArrayList<String[]> elementos = GestionController.numPiezasPorProyectos();
+        Object[][] data = new Object[elementos.size()][5];
+        for (int i = 0; i < elementos.size(); i++) {
+            data[i][0] = elementos.get(i)[0];
+            data[i][1] = elementos.get(i)[1];
+            data[i][2] = elementos.get(i)[2];
+            data[i][3] = elementos.get(i)[3];
+            data[i][4] = elementos.get(i)[4];
+        }
+
+        table1.setModel(new javax.swing.table.DefaultTableModel(
+                data,
+                new String [] {
+                        "ID Proyecto", "Nombre", "Ciudad", "Nº piezas", "Cantidad total"
+                }
+        ));
     }
 
     private void initComponents() {
@@ -31,13 +131,15 @@ public class Estadisticas extends JFrame {
         scrollPane3 = new JScrollPane();
         textPane1 = new JTextPane();
         scrollPane4 = new JScrollPane();
-        textPane2 = new JTextPane();
+        piezaMasGrande = new JTextPane();
         scrollPane5 = new JScrollPane();
         textPane3 = new JTextPane();
         scrollPane6 = new JScrollPane();
         textPane4 = new JTextPane();
         scrollPane7 = new JScrollPane();
         textPane5 = new JTextPane();
+        label7 = new JLabel();
+        label8 = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -54,39 +156,39 @@ public class Estadisticas extends JFrame {
             scrollPane1.setViewportView(table1);
         }
         contentPane.add(scrollPane1);
-        scrollPane1.setBounds(20, 65, 640, 100);
+        scrollPane1.setBounds(35, 95, 640, 100);
 
         //---- label2 ----
         label2.setText("Pieza de la que se ha suministrado m\u00e1s cantidad: ");
         contentPane.add(label2);
-        label2.setBounds(20, 180, 330, 45);
+        label2.setBounds(20, 205, 330, 45);
 
         //---- label3 ----
-        label3.setText("Pieza de la que se ha suministrado a m\u00e1s proyectos:");
+        label3.setText("N\u00ba de piezas y cantidad de las piezas suministradas en proyectos:");
         contentPane.add(label3);
-        label3.setBounds(20, 230, 330, 45);
+        label3.setBounds(30, 50, 655, 45);
 
         //======== scrollPane2 ========
         {
             scrollPane2.setViewportView(table2);
         }
         contentPane.add(scrollPane2);
-        scrollPane2.setBounds(20, 285, 635, 100);
+        scrollPane2.setBounds(40, 345, 635, 100);
 
         //---- label4 ----
         label4.setText("Proveedor que ha suministrado m\u00e1s cantidad de piezas:");
         contentPane.add(label4);
-        label4.setBounds(20, 395, 370, 45);
+        label4.setBounds(20, 460, 370, 45);
 
         //---- label5 ----
         label5.setText("Proveedor que ha suministrado a m\u00e1s proyectos/n\u00ba proy:");
         contentPane.add(label5);
-        label5.setBounds(20, 455, 370, 45);
+        label5.setBounds(20, 525, 370, 45);
 
         //---- label6 ----
         label6.setText("Proveedor que ha suministrado m\u00e1s piezas/n\u00ba piezas:");
         contentPane.add(label6);
-        label6.setBounds(15, 515, 370, 45);
+        label6.setBounds(15, 595, 370, 45);
 
         //======== scrollPane3 ========
         {
@@ -96,40 +198,50 @@ public class Estadisticas extends JFrame {
             scrollPane3.setViewportView(textPane1);
         }
         contentPane.add(scrollPane3);
-        scrollPane3.setBounds(365, 230, 380, 45);
+        scrollPane3.setBounds(365, 265, 380, 45);
 
         //======== scrollPane4 ========
         {
 
-            //---- textPane2 ----
-            textPane2.setEditable(false);
-            scrollPane4.setViewportView(textPane2);
+            //---- piezaMasGrande ----
+            piezaMasGrande.setEditable(false);
+            scrollPane4.setViewportView(piezaMasGrande);
         }
         contentPane.add(scrollPane4);
-        scrollPane4.setBounds(365, 175, 380, 45);
+        scrollPane4.setBounds(365, 205, 380, 45);
 
         //======== scrollPane5 ========
         {
             scrollPane5.setViewportView(textPane3);
         }
         contentPane.add(scrollPane5);
-        scrollPane5.setBounds(395, 395, 350, 50);
+        scrollPane5.setBounds(395, 455, 350, 50);
 
         //======== scrollPane6 ========
         {
             scrollPane6.setViewportView(textPane4);
         }
         contentPane.add(scrollPane6);
-        scrollPane6.setBounds(395, 455, 350, 50);
+        scrollPane6.setBounds(395, 520, 350, 50);
 
         //======== scrollPane7 ========
         {
             scrollPane7.setViewportView(textPane5);
         }
         contentPane.add(scrollPane7);
-        scrollPane7.setBounds(395, 515, 350, 50);
+        scrollPane7.setBounds(395, 590, 350, 50);
 
-        contentPane.setPreferredSize(new Dimension(770, 620));
+        //---- label7 ----
+        label7.setText("N\u00ba de piezas y cantidad de piezas suministradas por proveedor:");
+        contentPane.add(label7);
+        label7.setBounds(40, 315, 640, label7.getPreferredSize().height);
+
+        //---- label8 ----
+        label8.setText("Pieza de la que se ha suministrado m\u00e1s cantidad: ");
+        contentPane.add(label8);
+        label8.setBounds(25, 265, 330, 45);
+
+        contentPane.setPreferredSize(new Dimension(770, 710));
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
@@ -149,12 +261,14 @@ public class Estadisticas extends JFrame {
     private JScrollPane scrollPane3;
     private JTextPane textPane1;
     private JScrollPane scrollPane4;
-    private JTextPane textPane2;
+    private JTextPane piezaMasGrande;
     private JScrollPane scrollPane5;
     private JTextPane textPane3;
     private JScrollPane scrollPane6;
     private JTextPane textPane4;
     private JScrollPane scrollPane7;
     private JTextPane textPane5;
+    private JLabel label7;
+    private JLabel label8;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

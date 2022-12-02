@@ -7,6 +7,7 @@ package view;
 import java.awt.event.*;
 
 import view.ayuda.AyudaView;
+import view.gestion.Estadisticas;
 import view.gestion.PiezasProveedoresProyectosView;
 import view.gestion.SuministrosPorPiezaView;
 import view.gestion.SuministrosPorProveedorView;
@@ -70,6 +71,11 @@ public class PantallaPrincipalView extends JFrame {
         suministrosPorPiezaView.setVisible(true);
     }
 
+    private void mEstadisticas(ActionEvent e) {
+        Estadisticas estadisticas = new Estadisticas();
+        estadisticas.setVisible(true);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         menuBar1 = new JMenuBar();
@@ -129,6 +135,7 @@ public class PantallaPrincipalView extends JFrame {
 
                 //---- mEstadisticas ----
                 mEstadisticas.setText("Estad\u00edsticas");
+                mEstadisticas.addActionListener(e -> mEstadisticas(e));
                 menu1.add(mEstadisticas);
             }
             menuBar1.add(menu1);
