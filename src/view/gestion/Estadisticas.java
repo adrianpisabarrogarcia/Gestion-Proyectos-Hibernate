@@ -237,7 +237,7 @@ public class Estadisticas extends JFrame {
         label7.setBounds(40, 315, 640, label7.getPreferredSize().height);
 
         //---- label8 ----
-        label8.setText("Pieza de la que se ha suministrado m\u00e1s cantidad: ");
+        label8.setText("Pieza de la que se ha suministrado a m\u00e1s proyectos: ");
         contentPane.add(label8);
         label8.setBounds(25, 265, 330, 45);
 

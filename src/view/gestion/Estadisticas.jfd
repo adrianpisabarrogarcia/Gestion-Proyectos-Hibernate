@@ -150,7 +150,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label8"
-				"text": "Pieza de la que se ha suministrado más cantidad: "
+				"text": "Pieza de la que se ha suministrado a más proyectos: "
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 330
 				"height": 45
